@@ -1,0 +1,20 @@
+# Virtual Environment
+venv/
+env/
+
+# Python Cache
+__pycache__/
+*.py[cod]
+__pycache__
+*.pyo
+*.pyd
+*.pdb
+*.egg-info/
+*.egg
+*.whl
+
+# Environment Variables
+.env
+*.env
+*.env.local
+*.env.development.local
