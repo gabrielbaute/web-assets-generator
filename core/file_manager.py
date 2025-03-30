@@ -1,7 +1,8 @@
 import os
+import json
 import zipfile
 import shutil
-from typing import Optional
+from typing import Optional, List, Dict
 
 def create_temp_dir(base_path: str = "temp") -> str:
     """Crea una carpeta temporal única."""
@@ -19,3 +20,31 @@ def create_zip(files: list, output_zip: str) -> str:
         for file in files:
             zipf.write(file, os.path.basename(file))
     return output_zip
+
+def create_download_zip(
+    files: List[str],
+    output_zip_path: str,
+    manifest_content: Dict[str, any],
+    html_content: str
+) -> str:
+    """
+    Crea un ZIP con todos los assets + archivos de configuración.
+    
+    Args:
+        files: Lista de rutas de archivos generados (ej: ["favicon.ico", "android_192x192.png"]).
+        output_zip_path: Ruta donde se guardará el ZIP.
+        manifest_content: Contenido del manifest.json (dict).
+        html_content: Contenido del HTML (str).
+    """
+    with zipfile.ZipFile(output_zip_path, 'w') as zipf:
+        # Añadir archivos generados
+        for file_path in files:
+            zipf.write(file_path, os.path.basename(file_path))
+        
+        # Añadir manifest.json (generado en memoria)
+        zipf.writestr("manifest.json", json.dumps(manifest_content, indent=2))
+        
+        # Añadir template.html
+        zipf.writestr("assets_template.html", html_content)
+    
+    return output_zip_path
