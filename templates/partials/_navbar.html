@@ -1,0 +1,36 @@
+<div class="container">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="{{ url_for('main.index') }}">
+            <img width="36" src="{{ url_for('static', filename='img/logo.png') }}" alt="logo">
+        </a>
+      </div>
+    
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item" href="{{ url_for('main.index') }}">
+              Home
+          </a>
+        </div>
+
+        <div class="navbar-end">
+          <div class="navbar-item">
+              
+                  <div class="navbar-item">
+                      <p>Hola!</p>
+                  </div>
+
+                  <!-- Botón de cambio de tema -->
+                  <div class="navbar-item">
+                      <button id="theme-toggle" class="button is-light">
+                          <!-- El ícono será manejado por el script -->
+                      </button>
+                  </div>
+
+          </div>
+      </div>
+
+
+      </div>
+    </nav>
+  </div>
