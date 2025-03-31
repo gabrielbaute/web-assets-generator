@@ -21,6 +21,7 @@ class Config:
     
     # App
     APP_NAME = os.getenv('APP_NAME', 'OctopusIcons')
+    APP_VERSION = os.getenv('APP_VERSION', '0.1.0')
     MAX_CONTENT_LENGTH = int(os.getenv('MAX_CONTENT_LENGTH', 16)) * 1024 * 1024  # 16MB default
     ALLOWED_EXTENSIONS = {'png'}
     
