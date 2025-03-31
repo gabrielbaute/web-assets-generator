@@ -1,8 +1,10 @@
-from core.image_processor import generate_favicon
+from server import create_app
 
-# Ejemplo de uso
-input_image = "test_logo.png"  # Asegúrate de tener un PNG de prueba
-output_dir = "static_output"   # Carpeta donde se guardarán los archivos
+app=create_app()
 
-result = generate_favicon(input_image, output_dir)
-print("Archivos generados:", result)
+if __name__ == '__main__':
+    app.run(
+        host=app.config['HOST'],
+        port=app.config['PORT'],
+        debug=app.config['DEBUG']
+    )
