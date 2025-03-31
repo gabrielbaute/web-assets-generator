@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero is-fullheight is-error">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <h1 class="title is-1">
+                <span class="icon-text">
+                    <span class="icon">
+                        <i class="fas fa-weight-hanging fa-2x"></i>
+                    </span>
+                    <span>413</span>
+                </span>
+            </h1>
+            <h2 class="subtitle is-3">Archivo demasiado grande</h2>
+            <p class="block">
+                El archivo excede el límite de {{ max_size }} MB.
+                <br>Por favor, sube un archivo más pequeño.
+            </p>
+            <div class="buttons is-centered">
+                <a href="{{ url_for('main.index') }}" class="button is-white is-outlined">
+                    <span class="icon">
+                        <i class="fas fa-arrow-left"></i>
+                    </span>
+                    <span>Intentar nuevamente</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

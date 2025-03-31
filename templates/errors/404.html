@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero is-fullheight is-error">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <h1 class="title is-1">
+                <span class="icon-text">
+                    <span class="icon">
+                        <i class="fas fa-compass fa-2x"></i>
+                    </span>
+                    <span>404</span>
+                </span>
+            </h1>
+            <h2 class="subtitle is-3">¡Ups! Página no encontrada</h2>
+            <p class="block">La página que buscas no existe o ha sido movida.</p>
+            <div class="buttons is-centered">
+                <a href="{{ url_for('main.index') }}" class="button is-white is-outlined">
+                    <span class="icon">
+                        <i class="fas fa-home"></i>
+                    </span>
+                    <span>Volver al inicio</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
