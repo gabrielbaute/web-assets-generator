@@ -10,5 +10,6 @@ def register_context_processors(app):
     def inject_globals():
         return {
             'app_name': app.config['APP_NAME'],
-            'debug_mode': app.config['DEBUG']
+            'debug_mode': app.config['DEBUG'],
+            'app_version': app.config['APP_VERSION'],
         }
