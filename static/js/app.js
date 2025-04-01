@@ -32,6 +32,9 @@ if ('serviceWorker' in navigator) {
     '/static/img/favicon-16x16.png',
     '/static/img/favicon-32x32.png',
     '/static/img/logo.png',
+
+    // Fuentes locales
+    '/static/webfonts/fa-solid-900.woff2'
   ];
   
   self.addEventListener('install', event => {
