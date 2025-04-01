@@ -3,7 +3,7 @@ from werkzeug.utils import secure_filename
 from flask import (
     Blueprint, render_template, 
     send_file, flash, redirect, url_for, 
-    current_app, jsonify
+    current_app, jsonify, send_from_directory
 )
 
 from server.forms import AssetGenerationForm
@@ -110,3 +110,7 @@ def download_assets(filename):
         download_name='assets.zip',
         mimetype='application/zip'
     )
+
+@main_bp.route('/sw.js')
+def service_worker():
+    return send_from_directory('static', 'sw.js')
