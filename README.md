@@ -4,7 +4,7 @@
 ![Flask](https://img.shields.io/badge/Flask-3.0-green?logo=flask)
 ![Docker](https://img.shields.io/badge/Docker-✔-blue?logo=docker)
 
-Aplicación para generar favicons, logos y archivos de configuración para PWAs a partir de un PNG.
+Aplicación para generar favicons, logos y archivos de configuración para PWAs a partir de un PNG. De momento no se redimensiona ni adaptan proporciones, por lo que es importante que la imagen que se suministre sea de proporción 1:1. La plantilla HTML es una base que debe modificarse antes de insertarse en el header de tu proyecto, colocando la ruta real donde vas a insertar los íconos generados.
 
 ## 🚀 Características
 - 🖼️ Convierte PNG a favicon.ico y múltiples tamaños
@@ -28,12 +28,12 @@ Aplicación para generar favicons, logos y archivos de configuración para PWAs 
 
 ### 1. Construir la imagen
 ```bash
-docker-compose build
+docker compose build
 ```
 
 ### 2. Iniciar los servicios
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 ### Estructura de archivos clave
@@ -82,6 +82,3 @@ flask run --port 5001
 
 ## 📄 Licencia
 MIT © [Gabriel Baute](https://github.com/gabrielbaute)
-```
-
----
