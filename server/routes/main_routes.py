@@ -85,7 +85,7 @@ def process_image():
         return render_template(
             'main/results.html',
             download_url=url_for('main.download_assets', filename=zip_path),
-            app_name=form.app_name.data,
+            user_app_name=form.app_name.data,
             theme_color=form.theme_color.data
         )
         
