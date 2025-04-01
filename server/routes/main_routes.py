@@ -1,8 +1,7 @@
 import os
-import logging
 from werkzeug.utils import secure_filename
 from flask import (
-    Blueprint, request, render_template, 
+    Blueprint, render_template, 
     send_file, flash, redirect, url_for, 
     current_app, jsonify
 )
@@ -103,6 +102,7 @@ def process_image():
 @main_bp.route('/download/<filename>', methods=['GET'])
 def download_assets(filename):
     """Descarga el ZIP generado."""
+    flash("Archivos generados exitosamente.", "success")
     zip_path = os.path.join(current_app.config['UPLOAD_FOLDER'], filename)
     return send_file(
         zip_path,
