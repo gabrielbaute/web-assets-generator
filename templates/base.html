@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- PWA metatags -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#4F46E5">
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+
     <title>{% block title %}{{ app_name }}{% endblock %}</title>
     
     <!-- Estilos -->
@@ -34,6 +38,7 @@
 
     <!-- Scripts -->
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 
     <!-- Footer -->
     {% include 'partials/_footer.html' %}
