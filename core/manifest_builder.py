@@ -1,6 +1,7 @@
 import json
 import os
 from typing import Dict, List
+from flask import current_app
 
 def generate_manifest(
     app_name: str,
@@ -21,26 +22,33 @@ def generate_manifest(
     Returns:
         Dict: Estructura del manifest.json.
     """
-
-    icons_for_manifest = [
-        {
-            "src": os.path.basename(icon["path"]),
-            "sizes": icon["sizes"],
-            "type": icon["type"]
+    try:
+        icons_for_manifest = [
+            {
+                "src": os.path.basename(icon["path"]),
+                "sizes": icon["sizes"],
+                "type": icon["type"]
+            }
+            for icon in icons_metadata
+            if icon["platform"] == "android"  # Solo iconos para manifest
+        ]
+        
+        return {
+            "name": app_name,
+            "icons": icons_for_manifest,
+            "background_color": background_color,
+            "theme_color": theme_color,
+            "display": "standalone"
         }
-        for icon in icons_metadata
-        if icon["platform"] == "android"  # Solo iconos para manifest
-    ]
-    
-    return {
-        "name": app_name,
-        "icons": icons_for_manifest,
-        "background_color": background_color,
-        "theme_color": theme_color,
-        "display": "standalone"
-    }
+    except Exception as e:
+        current_app.logger.error(f"⚠️ Error generating manifest: {e}")
+        return {}
 
 def save_manifest(manifest_data: Dict[str, any], output_path: str) -> None:
     """Guarda el manifest.json en disco."""
-    with open(output_path, 'w') as f:
-        json.dump(manifest_data, f, indent=2)
+    try:
+        with open(output_path, 'w') as f:
+            json.dump(manifest_data, f, indent=2)
+    except Exception as e:
+        current_app.logger.error(f"⚠️ Error saving manifest: {e}")
+        raise e
