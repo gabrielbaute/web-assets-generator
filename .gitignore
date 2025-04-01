@@ -19,7 +19,10 @@ __pycache__
 *.env.local
 *.env.development.local
 
+# Proyecto
 static_output/
+temp_uploads/
+*.zip
 
 # log files
 *.log
