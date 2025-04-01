@@ -1,3 +1,8 @@
 .hero.is-error {
   background: linear-gradient(135deg, #ff4e50, #f9d423);
 }
+
+.footer a:hover {
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
