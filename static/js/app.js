@@ -10,15 +10,28 @@ if ('serviceWorker' in navigator) {
         });
     });
   }
-  
-  // Archivo sw.js (debe estar en la raíz de /static)
-  // Crea este archivo en static/sw.js
+
   const CACHE_NAME = 'octopus-icons-v1';
   const ASSETS_TO_CACHE = [
+    // HTML principal
     '/',
-    '/static/css/styles.css',
-    '/static/js/app.js',
-    '/static/android-192x192.png'
+    
+    // CSS (todos los críticos)
+    '/static/css/bulma.min.css',       // Framework Bulma
+    '/static/css/all.min.css',   // Iconos locales
+    '/static/css/styles.css',          // Tus estilos personalizados
+    
+    // JS
+    '/static/js/app.js',               // Tu lógica PWA
+    
+    // Imágenes/Icons
+    '/static/img/android-192x192.png',
+    '/static/img/android-512x512.png',
+    '/static/img/apple-touch-icon.png',
+    '/static/img/favicon.ico',
+    '/static/img/favicon-16x16.png',
+    '/static/img/favicon-32x32.png',
+    '/static/img/logo.png',
   ];
   
   self.addEventListener('install', event => {
