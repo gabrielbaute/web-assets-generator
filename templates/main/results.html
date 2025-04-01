@@ -1,18 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="box has-text-centered">
-    <h2 class="title">¡Assets generados para {{ app_name }}!</h2>
-    <div class="block">
-        <span class="icon is-large" style="color: {{ theme_color }};">
-            <i class="fas fa-robot fa-3x"></i>  <!-- Ejemplo de icono -->
-        </span>
+<section class="section">
+    <div class="container">
+        <div class="columns is-centered">
+             <!-- Columna de caja de resultados -->
+            <div class="column is-half">
+                <div class="box has-text-centered">
+                    <h2 class="title">¡Assets generados para {{ app_name }}!</h2>
+                    <div class="block">
+                        <span class="icon is-large" style="color: {{ theme_color }};">
+                            <i class="fas fa-robot fa-3x"></i>  <!-- Ejemplo de icono -->
+                        </span>
+                    </div>
+                    <a href="{{ download_url }}" class="button is-success is-large">
+                        <span class="icon">
+                            <i class="fas fa-download"></i>
+                        </span>
+                        <span>Descargar ZIP</span>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
-    <a href="{{ download_url }}" class="button is-success is-large">
-        <span class="icon">
-            <i class="fas fa-download"></i>
-        </span>
-        <span>Descargar ZIP</span>
-    </a>
-</div>
+</section>
 {% endblock %}
