@@ -24,4 +24,5 @@ services:
 
 networks:
   octopus-network:
+    name: octopus-network
     driver: bridge
