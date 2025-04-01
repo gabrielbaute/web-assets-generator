@@ -103,7 +103,7 @@ def process_image():
 def download_assets(filename):
     """Descarga el ZIP generado."""
     flash("Archivos generados exitosamente.", "success")
-    zip_path = os.path.join(current_app.config['UPLOAD_FOLDER'], filename)
+    zip_path = filename
     return send_file(
         zip_path,
         as_attachment=True,
