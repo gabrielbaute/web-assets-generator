@@ -113,4 +113,6 @@ def download_assets(filename):
 
 @main_bp.route('/sw.js')
 def service_worker():
-    return send_from_directory('static', 'sw.js')
+    response = send_from_directory('static', 'sw.js')
+    response.headers['Cache-Control'] = 'no-cache'
+    return response
