@@ -15,9 +15,6 @@ __pycache__
 
 # Environment Variables
 .env
-*.env
-*.env.local
-*.env.development.local
 
 # Proyecto
 static_output/
