@@ -3,6 +3,7 @@ from flask import Flask
 from config import current_config
 from server_logging import setup_logging
 from server.routes import register_blueprints
+from server.api import api_bp
 from server.extensions import register_extensions, register_context_processors
 from server.handlers import register_error_handlers
 
@@ -27,6 +28,7 @@ def create_app(config_class=None):
     # 4. Registro de blueprints y extensiones
     register_extensions(app)
     register_blueprints(app)
+    app.register_blueprint(api_bp)
 
     # 5. Handlers de errores personalizados
     register_error_handlers(app)

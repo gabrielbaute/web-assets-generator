@@ -96,7 +96,7 @@ def process_image():
         return redirect(url_for('main.index'))
     
     finally:
-        # Limpieza programada (opcional: usar Celery/Redis para async)
+        # Limpiar el directorio temporal después de un tiempo
         cleanup_temp_dir(temp_dir, delay=300)  # Limpiar en 5 minutos
 
 # Ruta 3: Descarga de assets (GET /download/<filename>)
