@@ -116,3 +116,15 @@ def service_worker():
     response = send_from_directory('static', 'sw.js')
     response.headers['Cache-Control'] = 'no-cache'
     return response
+
+@main_bp.route('/health')
+def health_check():
+    try:
+        return jsonify({
+            "status": "healthy",
+            "services": {
+                "cache": "ok"
+            }
+        }), 200
+    except Exception as e:
+        return jsonify({"status": "unhealthy", "error": str(e)}), 500
