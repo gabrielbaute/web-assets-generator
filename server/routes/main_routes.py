@@ -69,7 +69,7 @@ def process_image():
         
         # --- 5. Crear ZIP ---
         zip_filename = f"{form.app_name.data}_assets.zip"
-        zip_path = os.path.join('temp_uploads', os.path.basename(temp_dir), zip_filename)
+        zip_path = os.path.join(current_app.config['UPLOAD_FOLDER'], f"process_{os.urandom(4).hex()}", zip_filename)
 
         os.makedirs(os.path.dirname(zip_path), exist_ok=True)
         
@@ -104,19 +104,20 @@ def download_assets(filename):
     """Descarga el ZIP generado."""
     flash("Archivos generados exitosamente.", "success")
 
-    temp_dir = os.listdir('temp_uploads')[0] 
-    zip_path = os.path.join('temp_uploads', temp_dir, filename)
-
-    if not os.path.exists(zip_path):
-        current_app.logger.error(f"Archivo no encontrado: {zip_path}")
-        abort(404)
-
-    return send_file(
-        zip_path,
-        as_attachment=True,
-        download_name=filename,
-        mimetype='application/zip'
-    )
+    upload_folder = current_app.config['UPLOAD_FOLDER']
+    
+    for root, _, files in os.walk(upload_folder):
+        if filename in files:
+            zip_path = os.path.join(root, filename)
+            return send_file(
+                zip_path,
+                as_attachment=True,
+                download_name=filename,
+                mimetype='application/zip'
+            )
+        
+    current_app.logger.error(f"Archivo {filename} no encontrado en {upload_folder}")
+    abort(404, description="Archivo no encontrado")
 
 @main_bp.route('/sw.js')
 def service_worker():

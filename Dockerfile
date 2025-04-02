@@ -21,6 +21,10 @@ FROM python:3.13-slim-bookworm
 
 WORKDIR /app
 
+# Crea rutas de almacenamiento
+RUN mkdir -p /app/temp_uploads /app/static_output && \
+    chown -R 1000:1000 /app/temp_uploads /app/static_output
+
 # Copia desde el builder
 COPY --from=builder /root/.local /root/.local
 COPY . .
