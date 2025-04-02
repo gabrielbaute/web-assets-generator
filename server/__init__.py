@@ -6,6 +6,7 @@ from server.routes import register_blueprints
 from server.api import api_bp
 from server.extensions import register_extensions, register_context_processors
 from server.handlers import register_error_handlers
+from core import init_cleanup
 
 def create_app(config_class=None):
     """Factory de la aplicación Flask."""
@@ -29,6 +30,7 @@ def create_app(config_class=None):
     register_extensions(app)
     register_blueprints(app)
     app.register_blueprint(api_bp)
+    init_cleanup(app.config['UPLOAD_FOLDER'])
 
     # 5. Handlers de errores personalizados
     register_error_handlers(app)
