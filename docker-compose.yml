@@ -12,6 +12,7 @@ services:
     volumes:
       - ./static:/app/static:ro
       - ./logs:/app/logs:rw
+      - ./temp_uploads:/app/temp_uploads:rw
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:${PORT:-8000}/health"]
       interval: 30s
@@ -26,3 +27,11 @@ networks:
   octopus-network:
     name: octopus-network
     driver: bridge
+
+volumes:
+  static:
+    driver: local
+  logs:
+    driver: local
+  temp_uploads:
+    driver: local
