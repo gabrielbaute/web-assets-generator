@@ -2,7 +2,7 @@ import os
 from werkzeug.utils import secure_filename
 from flask import (
     Blueprint, render_template, 
-    send_file, flash, redirect, url_for, 
+    send_file, flash, redirect, url_for, abort,
     current_app, jsonify, send_from_directory
 )
 
@@ -69,7 +69,7 @@ def process_image():
         
         # --- 5. Crear ZIP ---
         zip_filename = f"{form.app_name.data}_assets.zip"
-        zip_path = os.path.join(temp_dir, zip_filename)
+        zip_path = os.path.join('temp_uploads', os.path.basename(temp_dir), zip_filename)
 
         os.makedirs(os.path.dirname(zip_path), exist_ok=True)
         
@@ -83,7 +83,7 @@ def process_image():
         # --- 6. Redirigir a results.html con datos ---
         return render_template(
             'main/results.html',
-            download_url=url_for('main.download_assets', filename=zip_path),
+            download_url=url_for('main.download_assets', filename=zip_filename),
             user_app_name=form.app_name.data,
             theme_color=form.theme_color.data
         )
@@ -103,11 +103,18 @@ def process_image():
 def download_assets(filename):
     """Descarga el ZIP generado."""
     flash("Archivos generados exitosamente.", "success")
-    zip_path = filename
+
+    temp_dir = os.listdir('temp_uploads')[0] 
+    zip_path = os.path.join('temp_uploads', temp_dir, filename)
+
+    if not os.path.exists(zip_path):
+        current_app.logger.error(f"Archivo no encontrado: {zip_path}")
+        abort(404)
+
     return send_file(
         zip_path,
         as_attachment=True,
-        download_name='assets.zip',
+        download_name=filename,
         mimetype='application/zip'
     )
 
